@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import ru.buttonone.numbers.specification.NumbersSpecifications;
 
 import static io.restassured.RestAssured.given;
-import static ru.buttonone.numbers.specification.NumbersSpecifications.NUMBERS_URL;
 import static ru.buttonone.numbers.specification.NumbersSpecifications.defaultRequestSpecification;
 
 
@@ -40,17 +39,12 @@ public class NumbersTest {
                 .build();
 
 
-        given() // после этого идет блок предусловий
-                .spec(defaultRequestSpecification()) //начальные условия
+        given()
+                .spec(defaultRequestSpecification())
                 .when() //когда
-                //.get("/2")
-                .get()  // выполняем запрос (метод GET)
+                .get("/{id}")
                 .then() //тогда
-//                .contentType(ContentType.TEXT)
-//                .log().all()
-//                .statusCode(200);
-                //.header("")
-                .spec(responseSpecification);//идут проверки на ответ
+                .spec(responseSpecification);
 
     }
 }

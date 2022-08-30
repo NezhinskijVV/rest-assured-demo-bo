@@ -6,13 +6,13 @@ import io.restassured.specification.RequestSpecification;
 
 public class NumbersSpecifications {
 
-    public static final String NUMBERS_URL = "http://numbersapi.com/2";
+    public static final String NUMBERS_URI = "http://numbersapi.com";
 
     public static RequestSpecification defaultRequestSpecification() {
 
         return new RequestSpecBuilder()
                 .addHeader("Accept-Language", "fr")
-                .setBaseUri(NUMBERS_URL)
+                .setBaseUri(NUMBERS_URI)
                 .log(LogDetail.ALL)
                 .build();
     }
