@@ -1,16 +1,24 @@
 package ru.buttonone.numbers;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.buttonone.numbers.specification.NumbersSpecifications;
 
 import static io.restassured.RestAssured.given;
+import static ru.buttonone.numbers.specification.NumbersSpecifications.NUMBERS_URL;
+import static ru.buttonone.numbers.specification.NumbersSpecifications.defaultRequestSpecification;
+
 
 public class NumbersTest {
-    public static final String NUMBERS_URL = "http://numbersapi.com";
 
     @Test
     public void shouldHaveCorrectGet2() {
@@ -19,18 +27,37 @@ public class NumbersTest {
 ////        System.out.println(response.statusCode());
 //        Assertions.assertEquals(200, response.statusCode());
 
-        given()
-                .header(new Header("Accept-Language", "ru"))
-                .baseUri(NUMBERS_URL)
-                .when()
-                .get("/2")
-                .then()
-                .contentType(ContentType.TEXT)
-                .log().all()
-                .header("Content-Length", "67")
-                .statusCode(200);
+//        RequestSpecification requestSpecification
+//                = new RequestSpecBuilder()
+//                .addHeader("Accept-Language", "ru")
+//                .setBaseUri(NUMBERS_URL)
+//                .build();
+
+        ResponseSpecification responseSpecification
+                = new ResponseSpecBuilder()
+                .log(LogDetail.ALL)
+                .expectStatusCode(200)
+                .build();
+
+
+        given() // после этого идет блок предусловий
+                .spec(defaultRequestSpecification()) //начальные условия
+                .when() //когда
+                //.get("/2")
+                .get()  // выполняем запрос (метод GET)
+                .then() //тогда
+//                .contentType(ContentType.TEXT)
+//                .log().all()
+//                .statusCode(200);
+                //.header("")
+                .spec(responseSpecification);//идут проверки на ответ
 
     }
 }
 
 //given when then (Gherkin)
+
+//1. Выучить что такое BDD
+//2. Создать свои кастомные спецификации в отдельном классе
+// и добавить в каждый тест (возможно туда засунуть общие константы)
+//3. Написать тесты с негативными сценариями
