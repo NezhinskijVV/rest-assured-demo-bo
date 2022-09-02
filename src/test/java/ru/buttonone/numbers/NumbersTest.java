@@ -18,6 +18,9 @@ import static ru.buttonone.numbers.specification.NumbersSpecifications.defaultRe
 
 
 public class NumbersTest {
+    public static final String NUMBERS_URI = "http://numbersapi.com";
+    public static final String ID_PATH = "/{id}";
+
 
     @Test
     public void shouldHaveCorrectGet2() {
@@ -40,11 +43,13 @@ public class NumbersTest {
 
 
         given()
-                .spec(defaultRequestSpecification())
-                .when() //когда
-                .get("/{id}")
-                .then() //тогда
-                .spec(responseSpecification);
+                .baseUri(NUMBERS_URI)
+                .pathParam("id", 2)
+                .when()
+                .get(ID_PATH)
+                .then()
+                .log().all()
+                .statusCode(200);
 
     }
 }
