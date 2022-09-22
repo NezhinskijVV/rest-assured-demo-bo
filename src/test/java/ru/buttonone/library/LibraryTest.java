@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.buttonone.repository.BookRepository;
 
-@SpringBootTest
+@SpringBootTest //поднимается весь контекст
 public class LibraryTest {
 
-    @Autowired
+    @Autowired //внедрение
     private BookRepository bookRepository;
 
     @Test
