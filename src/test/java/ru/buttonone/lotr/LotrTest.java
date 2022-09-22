@@ -5,7 +5,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.buttonone.model.Book;
+import ru.buttonone.model.BookOld;
 
 import java.util.List;
 
@@ -26,12 +26,12 @@ public class LotrTest {
                 .then()
                 .statusCode(200);
 
-        List<Book> bookList = validatableResponse
+        List<BookOld> bookOldList = validatableResponse
                 .extract()
                 .body()
-                .jsonPath().getList("docs", Book.class);
+                .jsonPath().getList("docs", BookOld.class);
 
-        System.out.println(bookList);
+        System.out.println(bookOldList);
 
         //1
 //        Assertions.assertAll(
@@ -42,9 +42,9 @@ public class LotrTest {
 //        assertThat(bookList, hasItem(new Book("The Fellowship Of The Ring")));
 
 
-        MatcherAssert.assertThat(bookList, Matchers.containsInAnyOrder(new Book("The Fellowship Of The Ring"),
-                new Book("The Return Of The King"),
-                new Book("The Two Towers")
+        MatcherAssert.assertThat(bookOldList, Matchers.containsInAnyOrder(new BookOld("The Fellowship Of The Ring"),
+                new BookOld("The Return Of The King"),
+                new BookOld("The Two Towers")
         ));
 
 
