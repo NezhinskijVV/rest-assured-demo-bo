@@ -47,11 +47,9 @@ public class LotrTest {
                 new BookOld("The Two Towers")
         ));
 
-
 //                .log().all()
 //                .statusCode(200);
 
     }
-
 
 }
