@@ -29,7 +29,7 @@ public class LibraryTest {
                 .writeValueAsString(expectedBook);
 
         RestAssured.given()
-                .baseUri("http://localhost:8081")
+                .baseUri("http://localhost:8080")
                 .header(new Header("Content-Type", "application/json"))
                 .body(jsonExpectedBook)
                 .when()
