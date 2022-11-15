@@ -46,5 +46,11 @@ public class LibraryTest {
         );
     }
 
+    @DisplayName(" тестовые тест")
+    @Test
+    public void testTest(){
+        Assertions.assertEquals(1,1);
+    }
+
 
 }
