@@ -46,10 +46,10 @@ public class LibraryTest {
         );
     }
 
-    @DisplayName(" тестовые тест")
+    @DisplayName(" тестовый тест")
     @Test
     public void testTest(){
-        Assertions.assertEquals(1,1);
+        Assertions.assertEquals(2,1);
     }
 
 
