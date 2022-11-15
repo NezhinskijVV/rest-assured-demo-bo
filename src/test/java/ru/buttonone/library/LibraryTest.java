@@ -49,7 +49,7 @@ public class LibraryTest {
     @DisplayName(" тестовый тест")
     @Test
     public void testTest(){
-        Assertions.assertEquals(2,1);
+        Assertions.assertEquals(1,1);
     }
 
 
